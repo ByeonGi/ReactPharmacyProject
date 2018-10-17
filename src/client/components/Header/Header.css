@@ -1,0 +1,28 @@
+.navbar{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display : inline-block;
+    background: #d8d6d6;
+    width : 100%;
+}
+.navbar>li>a{
+    display : block;
+    color : #777;
+    padding : 8px 16px; 
+    text-decoration: none;
+    text-align: center;
+}
+.navbar>li>a:hover {
+    background: #ccc;
+    color : #fff;
+}
+.navbar>li{
+    width : 100px;
+    float : right;
+    
+}
+.navbar .navbar-brand {
+    float : left;
+    width : 150px;
+}
