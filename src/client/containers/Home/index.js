@@ -2,6 +2,7 @@ import React from 'react';
 import Header from '../../components/Header';
 import './Home.css';
 import Manager from '../../components/Manager';
+import List from '../../components/List';
 
 class Home extends React.Component{
     componentDidMount(){
@@ -24,6 +25,9 @@ class Home extends React.Component{
                     </div>
                     <div className="home-manager">
                         <Manager/>
+                    </div>
+                    <div className = "home-list">
+                        <List/>
                     </div>
                 </div>
             </div>

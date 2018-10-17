@@ -16,9 +16,16 @@
 
 }
 
-.home-mangaer{
+.home-manager{
     width : 260px;
     padding : 20px;
+    margin-bottom : 20px;
+    float : right;
+    border : 1px solid #bcbcbc;
+}
+.home-list{
+    width : 260px;
+    padding: 20px;
     margin-bottom : 20px;
     float : right;
     border : 1px solid #bcbcbc;

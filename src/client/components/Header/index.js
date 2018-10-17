@@ -7,7 +7,7 @@ class Header extends React.Component{
     render(){
         const signin = (
             <li>
-                <Link to ="singin">
+                <Link to ="/signin">
                     LOGIN
                 </Link>
             </li>
@@ -23,7 +23,7 @@ class Header extends React.Component{
         return (
             <nav className = 'navbar'>
                 <li className = 'navbar-brand'>
-                    <a>변기네 약국</a>
+                    <Link to = "/">변기네 약국</Link>
                 </li>
                 {this.props.isLoggedIn?signout:signin}
                 <li>
