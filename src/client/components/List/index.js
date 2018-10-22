@@ -8,16 +8,13 @@ const ServiceKey = 'ServiceKey=4fWWtODDyN10BFGS%2B8T1FfdeusG0PQiXZLGjkn6Plq1ETkw
 
 
 class List extends React.Component{
+    
     constructor() {
         super();
         this.state = {
             items : []
         }
         
-    }
-
-    componentWillUnmount(){
-        console.log(';');
     }
 
     componentDidMount(){

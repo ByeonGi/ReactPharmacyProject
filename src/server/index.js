@@ -14,6 +14,10 @@ app.use(function(err, req, res, next){
     res.status(500).send('Something broke!');
 })
 
+app.get('*', (res, req) =>{
+    res.sendFile(path.resolve(__dirname, '../../public/index.html'));
+});
+
 app.get('/', (req, res) =>{
     res.send('hello world');
 });
