@@ -3,6 +3,7 @@ import express from '../models/account';
 
 const router = express.Router();
 
+
 router.post('/signup', (req, res) =>{
     Account.findOne({username : req.body.username}, (err, exists)=>{
         if(err) throw err;

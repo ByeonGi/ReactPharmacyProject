@@ -1,13 +1,41 @@
 import React from 'react';
 import Authentication from '../../components/Authentication';
-import { connect } from 'react-redux';
-import { loginRequest } from '../../actions/authentication';
+import {connect} from 'react-redux';
+import {loginRequest} from '../../actions/authentication';
+import {browserHistory} from 'react-router-dom';
 
 class Login extends React.Component{
+    constructor(props) {
+        super(props);
+        this.handleLogin = this.handleLogin.bind(this);
+    }
+
+    handleLogin(id, pw) {
+        return this.props.loginRequest(id, pw).then(
+            () =>{
+                if(this.props.status === "SUCCESS"){
+                    let loginData = {
+                        isLoggedIn : true,
+                        username : id
+                    };
+
+                    document.cookie = 'key = ' + btoa(JSON.stringify(loginData));
+                    alert('Welcome, ' + id + '!');
+                    browserHistory.push('/');
+                    return true;
+                }else {
+                    alert('incorrect');
+                    return false;
+                }
+            }
+        )
+    }
+
     render(){
         return (
             <div>
-                <Authentication mode = {true}/>
+                <Authentication mode = {true}  
+                    onLogin = {this.handleLogin}/>
             </div>
         )
     }

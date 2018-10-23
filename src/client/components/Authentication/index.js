@@ -4,15 +4,16 @@ import { Link } from 'react-router-dom';
 
 class Authentication extends React.Component{
 
-    constructor(props){
+    constructor(props) {
         super(props);
-        this.state = {
+        this.state ={
             username : "",
             password : ""
         };
-
         this.handleChange = this.handleChange.bind(this);
-
+        this.handleLogin = this.handleLogin.bind(this);
+        this.handleRegister = this.handleRegister.bind(this);
+        this.handleKeyPress = this.handleKeyPress.bind(this);   
     }
 
     handleChange(e) {
@@ -21,7 +22,49 @@ class Authentication extends React.Component{
         this.setState(nextState);
     }
 
+    handleLogin() {
+        let id = this.state.username;
+        let pw = this.state.password;
+
+        this.props.onLogin(id,pw).then(
+            (success) =>{
+                if(!success){
+                    this.setState({
+                        password : ''
+                    });
+                }
+            }
+        );
+    }
+
+    handleRegister(){
+        let id = this.state.username;
+        let pw = this.state.password;
+
+        this.props.onRegister(id, pw).then(
+            (result) =>{
+                if(!result){
+                    this.setState({
+                        username : '',
+                        password : ''
+                    });
+                }
+            }
+        );
+    }
+
+    handleKeyPress(e){
+        if(e.charCode == 13){
+            if(this.props.mode){
+                this.handleLogin();
+            }else{
+                this.handleRegister();
+            }
+        }
+    }
+
     render(){
+
         const inputBox = (
             <div>
                 <div>
@@ -29,8 +72,8 @@ class Authentication extends React.Component{
                     <input
                     name ="username"
                     type = "text"
-                    onChange = {this.handleChange}
-                    value = {this.state.username}
+                    onChange={this.handleChange}
+                    value={this.state.username}
                     ></input>
                 </div>
                 <div>
@@ -39,7 +82,8 @@ class Authentication extends React.Component{
                     name = "password"
                     type = "password"
                     onChange = {this.handleChange}
-                    value = {this.state.password}
+                    value= {this.state.password}
+                    onKeyPress = {this.handleKeyPress}
                     >
                     </input>
                 </div>
@@ -51,7 +95,7 @@ class Authentication extends React.Component{
                 loginView
                 <div>
                     {inputBox}
-                    <a>SUBMIT</a>
+                    <button onClick = {this.handleLogin}>SUBMIT</button>
                 </div>
                 <div>
                     <div>
@@ -68,7 +112,7 @@ class Authentication extends React.Component{
                 registerView
                 <div>
                     {inputBox}
-                    <a>CREATE</a>
+                    <a onClick = {this.handleRegister}>CREATE</a>
                 </div>
             </div>
         );

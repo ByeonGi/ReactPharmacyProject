@@ -6,7 +6,5 @@ import './index.css';
 // Redux
 
 ReactDOM.render(
-
         <Root />
-
     , document.getElementById('root'));
