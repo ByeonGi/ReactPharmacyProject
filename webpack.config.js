@@ -1,31 +1,27 @@
+var path = require('path');
 
-const HTMLWebpackPlugin = require('html-webpack-plugin');
 const webpack = require('webpack');
-
 module.exports ={
-   
-    entry :[
-        './src/client/index.js',
+    entry : [
+        './src/index.js',
+        
     ],
+
     output : {
-        path : __dirname + '/public',
+        path : __dirname  + '/public',
         filename : 'bundle.js'
     },
+
     module : {
-        rules :[
+        rules : [
             {
-                test: /\.js|jsx$/,
-                use : {
-                    loader:'babel-loader',
-                    options:{
-                        presets : ['babel-preset-es2015']
-                    }
-                },
+                test : /\.js$/,
+                use : ['babel-loader'],
                 exclude : /node_modules/,
             },
             {
                 test : /\.css$/,
-                use :[
+                use:[
                     {loader : 'style-loader'},
                     {loader : 'css-loader'}
                 ]
@@ -34,10 +30,12 @@ module.exports ={
     },
     plugins : [
         
-        new HTMLWebpackPlugin({
-            template : './public/index.html'
-        }),
         new webpack.HotModuleReplacementPlugin()
-    
-    ]
+    ],
+    resolve : {
+        modules : [
+            path.resolve(__dirname, 'src'),
+            path.resolve(__dirname, 'node_modules')
+        ]
+    }
 }
