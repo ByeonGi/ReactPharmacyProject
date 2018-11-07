@@ -8,12 +8,12 @@ const ServiceKey = 'ServiceKey=4fWWtODDyN10BFGS%2B8T1FfdeusG0PQiXZLGjkn6Plq1ETkw
 
 
 class List extends React.Component{
-    
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = {
             items : [],
-            
+            searchItems : [],
+            mode : false
         } 
     }
 
@@ -27,16 +27,42 @@ class List extends React.Component{
         })
     }
 
+    componentWillReceiveProps(nextProps){
+        if(nextProps.dutySearch === ''){
+            this.setState({
+                mode : false
+            })
+        }else{
+            let test = [];
     
+            for(var i = 0; i<this.state.items.length; i++){
+                if(this.state.items[i].dutyName.indexOf(nextProps.dutySearch)!=-1){
+                    test.push(this.state.items[i].dutyName);
+                }
+            }
+            this.setState({
+                searchItems : test,
+                mode : true
+            })
+        }
+    }
+
+    componentDidUpdate(){
+        
+    }
 
     render(){
         const list = ()=>{
-            
-                return this.state.items.map((item,i)=>{
-                    <div key ={i}>{item.dutyName}</div>
-               }) 
+            if(this.state.mode === false){
+                return this.state.items.map((item, i ) =>(
+                    <div key = {i}>{item.dutyName}</div>
+                ))
+            }else if(this.state.mode === true){
+                return this.state.searchItems.map((item, i )=>(
+                    <div key = {i}>{item}</div>
+                ))
+            }
         }
-
         return(
             <div>
                 {list()}
