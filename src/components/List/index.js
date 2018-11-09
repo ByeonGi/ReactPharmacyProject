@@ -1,9 +1,11 @@
 import React from 'react';
 import './List.css';
 import axios from 'axios';
+import InfinitieScroll from 'react-infinite-scroller';
 
 const url = 'http://apis.data.go.kr/B552657/ErmctInsttInfoInqireService/getParmacyFullDown?';
 const ServiceKey = 'ServiceKey=4fWWtODDyN10BFGS%2B8T1FfdeusG0PQiXZLGjkn6Plq1ETkwmUjY3W57cGc27vLVPSrzM3mHdEihgzr0vX3WJgw%3D%3D';
+const getDataNum = '&pageNo=3&startPage=1&numOfRows=1000&pageSize=1000';
 
 
 
@@ -15,17 +17,32 @@ class List extends React.Component{
             searchItems : [],
             mode : false
         } 
+        this.getAPIDate = this.getAPIData.bind(this);
     }
 
-    componentDidMount(){
-        axios.get(url+ServiceKey)
-        .then((result) => {
+    getAPIData(){
+        axios.get(url+ServiceKey + getDataNum)
+        .then((result)=>{
             let items = result.data.response.body.items.item;
+            console.log(items);
             this.setState({items : items});
-            console.log(items); 
             this.props.onDutyListRequest(items);
         })
     }
+
+    componentDidMount(){
+        this.getAPIData();
+        
+        // axios.get(url+ServiceKey)
+        // .then((result) => {
+        //     let items = result.data.response.body.items.item;
+        //     console.log(items);
+        //     this.setState({items : items});
+ 
+        //     this.props.onDutyListRequest(items);
+        // })
+    }
+
 
     componentWillReceiveProps(nextProps){
         if(nextProps.dutySearch === ''){
@@ -40,6 +57,7 @@ class List extends React.Component{
                     test.push(this.state.items[i].dutyName);
                 }
             }
+
             this.setState({
                 searchItems : test,
                 mode : true
@@ -64,8 +82,12 @@ class List extends React.Component{
             }
         }
         return(
-            <div>
-                {list()}
+            <div className = "list">
+                
+                    {list()}
+             
+                
+                
             </div>
         )
     }

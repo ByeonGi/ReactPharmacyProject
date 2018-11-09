@@ -25,6 +25,11 @@ class Manager extends React.Component{
     handleReset(){
         this.props.onDutyListSearch('');
     }
+    handleKeyPress(e){
+        if(e.charCode == 13){
+            this.handleSearch();
+        }
+    }
     render(){
         return(
             <div>
