@@ -21,7 +21,6 @@ class Header extends React.Component{
             </li>
         )
      
-
         return (
             <nav className = 'navbar'>
                 <li className = 'navbar-brand'>

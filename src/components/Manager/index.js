@@ -10,6 +10,7 @@ class Manager extends React.Component{
         this.handleSearchChange = this.handleSearchChange.bind(this);
         this.handleSearch = this.handleSearch.bind(this);
         this.handleReset = this.handleReset.bind(this);
+        this.handleKeyPress = this.handleKeyPress.bind(this);
     }
     handleSearchChange(e){
         let nextState = {};
@@ -24,6 +25,7 @@ class Manager extends React.Component{
     }
     handleReset(){
         this.props.onDutyListSearch('');
+        this.props.onDutyMode(false);
     }
     handleKeyPress(e){
         if(e.charCode == 13){
@@ -42,6 +44,7 @@ class Manager extends React.Component{
                         type = "text"
                         value={this.state.detailSearch}
                         onChange={this.handleSearchChange}
+                        onKeyPress = {this.handleKeyPress}
                     />
                     <button onClick={this.handleSearch}>Search</button>
                     <button onClick={this.handleReset}>Reset</button>

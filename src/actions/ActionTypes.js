@@ -19,4 +19,6 @@ export const AUTH_LOGOUT = "AUTH_LOGOUT";
 
 export const DUTY_LIST = "DUTY_LIST";
 export const DUTY_SEARCH = "DUTY_SEARCH";
+export const DUTY_SELECT = "DUTY_SELECT";
+export const DUTY_RESET = "DUTY_RESET";
 

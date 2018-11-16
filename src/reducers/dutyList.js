@@ -5,7 +5,9 @@ const initialState={
     dutyList : [
         
     ],
-    dutySearch : ''
+    dutySearch : '',
+    dutySelectName : '',
+    dutyMode : true,
 }
 
 export default function dutyList(state, action){
@@ -22,7 +24,15 @@ export default function dutyList(state, action){
             return update(state, {
                 dutySearch : {$set : action.searchName}
             })
-           
+        
+        case types.DUTY_SELECT :
+            return update(state, {
+                dutySelectName : {$set : action.selectName}
+            })
+        case types.DUTY_RESET : 
+            return update(state, {
+                dutyMode : {$set : action.selectMode}
+            })
         default : 
             return state;
     }

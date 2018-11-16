@@ -6,20 +6,13 @@ import { Home, Login, Register } from '../containers';
 
 
 class App extends React.Component {
-    
-
     render(){
         return (
-          
                 <div>
                         <Route exact path="/" component = {Home}/>
                         <Route path="/signin" component = {Login}/>
                         <Route path="/signup" component = {Register}/>
                 </div>
-          
-                
-           
-
         )
     }
 }
